@@ -1,0 +1,11 @@
+/target
+
+# Local data — never commit
+/data/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.ofx
+*.qfx
+.env
