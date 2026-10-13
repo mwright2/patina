@@ -11,6 +11,7 @@ publish = false
 overflow-checks = true
 
 [dependencies]
+chrono = { version = "0.4.45", default-features = false, features = ["std"] }
 sqlx = { version = "0.9", default-features = false, features = ["runtime-tokio", "sqlite", "macros", "migrate"] }
 
 [dev-dependencies]
