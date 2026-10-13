@@ -13,7 +13,7 @@ finances in US dollars.
 
 This ADR defines what a money value *is*. What a signed amount *means*
 (for example, whether an expense is stored as a negative number) is a
-domain-model question and is decided in 0003.
+domain-model question and is decided in 0004.
 
 ## Options considered
 
@@ -50,7 +50,7 @@ column.
 - **Storage:** `#[sqlx(transparent)]` stores the value as a plain
   `INTEGER` column.
 - **Sign:** `Money` may be negative. What the sign means is decided
-  in 0003.
+  in 0004.
 
 ## Consequences
 
