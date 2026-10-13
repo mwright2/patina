@@ -7,4 +7,11 @@ license = "Apache-2.0"
 description = "Self-hosted budgeting app"
 publish = false
 
+[profile.release]
+overflow-checks = true
+
 [dependencies]
+sqlx = { version = "0.9", default-features = false, features = ["runtime-tokio", "sqlite", "macros", "migrate"] }
+
+[dev-dependencies]
+tokio = { version = "1.53.2", features = ["macros", "rt"] }
