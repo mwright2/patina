@@ -1,6 +1,6 @@
 use std::{fmt, str::FromStr};
 
-use crate::kernel::AccountId;
+use crate::kernel::{AccountId, Name};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum AccountKind {
@@ -50,40 +50,16 @@ impl FromStr for AccountKind {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct AccountName(String);
-
-impl AccountName {
-    pub fn new(name: &str) -> Option<Self> {
-        let trimmed = name.trim();
-        if trimmed.is_empty() {
-            None
-        } else {
-            Some(AccountName(trimmed.to_owned()))
-        }
-    }
-
-    pub fn as_str(&self) -> &str {
-        &self.0
-    }
-}
-
-impl fmt::Display for AccountName {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.write_str(&self.0)
-    }
-}
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct NewAccount {
-    pub name: AccountName,
+    pub name: Name,
     pub kind: AccountKind,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Account {
     pub id: AccountId,
-    pub name: AccountName,
+    pub name: Name,
     pub kind: AccountKind,
     pub archived: bool,
 }
@@ -107,19 +83,6 @@ mod tests {
                 Err(ParseAccountKindError(input.to_owned())),
                 "input: {input:?}"
             );
-        }
-    }
-
-    #[test]
-    fn names_are_trimmed() {
-        let name = AccountName::new("  Joint Checking\n").unwrap();
-        assert_eq!(name.as_str(), "Joint Checking");
-    }
-
-    #[test]
-    fn rejects_blank_names() {
-        for input in ["", "  ", "\t\n"] {
-            assert_eq!(AccountName::new(input), None, "input: {input:?}");
         }
     }
 }
