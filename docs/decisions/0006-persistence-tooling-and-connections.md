@@ -73,8 +73,7 @@ as a single binary.
   so dev tooling and the real database never point at the same file.
 - **Layout:** amends 0003 with `src/db.rs` (connection and
   migrations) and `build.rs`.
-- **Toolchain:** `rust-version` is the highest minimum among our
-  dependencies, currently 1.94 for sqlx 0.9.
+- **Toolchain:** `rust-version` is the toolchain we build with, currently 1.99.
 
 ## Consequences
 
