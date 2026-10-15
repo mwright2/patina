@@ -88,10 +88,13 @@ only. Balances are not stored or modeled yet; how to anchor them
 - **Lines:** each line has an amount and an optional category. An
   unsplit transaction has one line. Lines have no ID in the domain;
   saving a transaction replaces its lines.
-- **Invariant:** `Transaction::new` returns an error if there are no
-  lines or if they don't sum to the amount. Fields are private, so the
-  constructor is the only way to build a transaction, including when
-  loading from the database.
+- **Invariant:** a transaction's amount and lines are held together
+  in an `Allocation`. `Allocation::split` returns an error if there
+  are no lines or if they don't sum to the amount; `Allocation::single`
+  builds the unsplit case and can't fail. Its fields are private, so
+  every transaction, including one loaded from the database, has a
+  balanced allocation. Transactions themselves are plain data with
+  public fields.
 - **Uncategorized:** a line's category is `Option<CategoryId>`. `None`
   (NULL) means not yet categorized.
 - Transactions will carry an optional external ID for de-duplicating
