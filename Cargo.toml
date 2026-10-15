@@ -12,7 +12,8 @@ overflow-checks = true
 
 [dependencies]
 chrono = { version = "0.4.45", default-features = false, features = ["std"] }
-sqlx = { version = "0.9", default-features = false, features = ["runtime-tokio", "sqlite", "macros", "migrate"] }
+sqlx = { version = "0.9", default-features = false, features = ["runtime-tokio", "sqlite", "macros", "migrate", "chrono"] }
+tokio = { version = "1.53.2", features = ["macros", "rt-multi-thread"] }
 
 [dev-dependencies]
-tokio = { version = "1.53.2", features = ["macros", "rt"] }
+tempfile = "3.27"

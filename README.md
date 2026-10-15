@@ -16,6 +16,26 @@ Requires Rust 1.99+ (the toolchain is stable via `rust-toolchain.toml`).
     cargo build
     cargo run
 
+## Development
+
+Install sqlx-cli, used for migrations and compile-time query data:
+
+    cargo install sqlx-cli --locked --no-default-features --features sqlite
+
+Create a `.env` file pointing at a throwaway development database
+(never at `data/`):
+
+    DATABASE_URL=sqlite:dev.db
+
+Then create and migrate it:
+
+    sqlx database setup
+
+After changing any `query!` or `query_as!` call, refresh the offline
+query data and commit `.sqlx/`:
+
+    cargo sqlx prepare -- --all-targets
+
 ## Your data
 
 All real financial data — the SQLite database and any bank export files —
