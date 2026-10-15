@@ -33,7 +33,7 @@ pub struct ParseAccountKindError(String);
 
 impl fmt::Display for ParseAccountKindError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "unknown accound kind: {:?}", self.0)
+        write!(f, "unknown account kind: {:?}", self.0)
     }
 }
 
