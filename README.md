@@ -11,7 +11,7 @@ in SQLite.
 
 ## Building
 
-Requires Rust 1.85+ (the toolchain is stable via `rust-toolchain.toml`).
+Requires Rust 1.99+ (the toolchain is stable via `rust-toolchain.toml`).
 
     cargo build
     cargo run
